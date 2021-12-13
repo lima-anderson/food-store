@@ -1,44 +1,61 @@
 package br.edu.ifpb.padroes.domain;
 
-public class Customer {
+import br.edu.ifpb.padroes.domain.Order.OrderStatus;
+import br.edu.ifpb.padroes.service.mail.Observer;
 
-    private Long id;
+public class Customer implements Observer {
 
-    private String name;
+	private Long id;
 
-    private String email;
+	private String name;
 
-    private String address;
+	private String email;
 
-    public Long getId() {
-        return id;
-    }
+	private String address;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void notificacao(OrderStatus status) {
+		System.out.println("Status da compra: " + status);
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public Customer() {
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Override
+	public void sinalizarEvento(OrderStatus status) {
+		notificacao(status);
+//		System.out.println("Status da compra: " + status);
+	}
 }
